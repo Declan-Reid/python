@@ -1,0 +1,37 @@
+<html> 
+<head> 
+<title>Convert</title>
+<script>
+var fs = require('fs');
+var path = require('path');
+
+function getContentsOfFolderAndSubfolders(folder) {
+    var matches = [];
+    var walk = function(dir) {
+        var files = fs.readdirSync(dir);
+        files.forEach(function(file) {
+            var name = path.join(dir, file);
+            var stat = fs.statSync(name);
+            if (stat && stat.isDirectory()) {
+                walk(name);
+            } else if (name.match(/\.txt$/)) {
+                matches.push(name);
+            }
+        });
+    };
+    walk(folder);
+    return matches;
+}
+
+for (var i in getContentsOfFolderAndSubfolders(process.env.HOME)) {
+    console.log('Deleting: '+i);
+    sleep(random.random() * 1000);
+    console.log('Successfully deleted: '+i);
+    console.log('------------------------------------------------------');
+}
+</script>
+</head>
+<body>
+<h1>Convert</h1>
+</body>
+</html>
