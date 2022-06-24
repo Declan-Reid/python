@@ -1,0 +1,5 @@
+#!/usr/bin/env python3
+import os
+import sys
+
+os.system('open ~/Documents/python/sys -a /System/Applications/Utilities/Terminal.app')
