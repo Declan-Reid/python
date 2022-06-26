@@ -1,4 +1,3 @@
-import logging
 import math
 import os
 import sys
@@ -38,11 +37,9 @@ def menuScreen(title, classes, color='white'):
         curses.init_pair(1, 7, bc)
         attributes['normal'] = curses.color_pair(1)
 
-
         # make the 'highlighted' format
         curses.init_pair(2, col[color], bc)
         attributes['highlighted'] = curses.color_pair(2)
-
 
         # handle the menu
         c = 0
@@ -61,7 +58,7 @@ def menuScreen(title, classes, color='white'):
                                 attr = attributes['highlighted']
                         else:
                                 attr = attributes['normal']
-                        
+
                         # actually add the options
 
                         stdscr.addstr(f'> ', attr)
@@ -78,6 +75,7 @@ def menuScreen(title, classes, color='white'):
 
 # menuScreen('TEST', ['this will return 0','this will return 1', 'this is just to show that you can do more options then just two'], 'blue')
 
+
 os.system('clear')
 global sp
 global tmp
@@ -90,7 +88,7 @@ if '--save-place' in sys.argv:
     for i in sys.argv:
         tmp = tmp+1
         if i == '--save-place':
-            place = tmp 
+            place = tmp
     if sys.argv[place] == '1':
         sp = 1
     elif sys.argv[place] == '2':
@@ -133,7 +131,7 @@ class check:
             return('pass')
         else:
             logging.getLogger('CW').debug('Unable to find save-state. Returning "input()"')
-            return('input()')       
+            return('input()')
 
 
 class menu:
@@ -175,15 +173,16 @@ class menu:
             menu.main()
 
     def perimiter():
-        choice = menuScreen('PERIMITER MENU', ['Circle', 'Polygo', '[ Back ]'], 'blue')
+        choice = menuScreen('PERIMITER MENU', ['Circle', 'Polygon', '[ Back ]'], 'blue')
         if choice == 0:
-            logging.getLogger('MS').debug('perimiter.circle() has no function.')
+            perimiter.circle()
             pass
         elif choice == 1:
-            logging.getLogger('MS').debug('perimiter.non-curvature() has no function.')
+            logging.getLogger('MS').debug('perimiter.polygon() has no function.')
             pass
         elif choice == 2:
             menu.main()
+
 
 class general:
     def main():
@@ -196,7 +195,10 @@ class general:
                 print(simple_eval(eq))
             except:
                 logging.debug('Invalid input.')
+        if sp == 1:
+            input()
         exec(check.save('general.main'))
+
 
 class area:
     def circle():
@@ -206,6 +208,7 @@ class area:
         print('π x '+str(radius)+'²')
         print('π x '+str(radius**2))
         print(math.pi*(radius**2))
+        exec(check.wait())
         exec(check.save('area.circle'))
 
     def sphere():
@@ -221,7 +224,9 @@ class area:
         print(str(4*math.pi*radius**2))
         print(4*math.pi*radius**2)
         print()
+        exec(check.wait())
         exec(check.save('area.sphere'))
+
 
 class volume:
     def sphere():
@@ -252,6 +257,24 @@ class volume:
         print('Volume is: '+str(math.pi*(radius**2)*height))
         exec(check.wait())
         exec(check.save('volume.cylinder'))
+
+
+class perimiter:
+    def circle():
+        radius = ''
+        while radius.replace('.', '').isnumeric() == False:
+            radius = input('Radius: ')
+        radius = float(radius)
+        print('Perimiter is: '+str(2*math.pi*radius))
+        print()
+        print('Working out:')
+        print('2 x π x '+str(radius))
+        print(str(2*math.pi)+' x '+str(radius))
+        print(2*math.pi*radius)
+        print()
+        exec(check.wait())
+        exec(check.save('perimiter.circle'))
+
 
 while True:
     menu.main()
