@@ -1,5 +1,5 @@
 # Python
 
-my code
+My code
 
-don't theft
+Don't theft

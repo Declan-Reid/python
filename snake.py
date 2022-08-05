@@ -150,8 +150,7 @@ class Snake:
         self.field.snake_coords = self.coords
 
         if not self.is_alive():
-            print("Score: "+(self.size-4))
-            sys.exit()
+            sys.exit('You died.')
 
 
         # check if snake eat an entity

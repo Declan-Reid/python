@@ -1,20 +1,9 @@
-from http.server import BaseHTTPRequestHandler, HTTPServer
+import http.server
+import socketserver
 
-hostName = "localhost"
-serverPort = 8080
+PORT = 8080
+Handler = http.server.SimpleHTTPRequestHandler
 
-class MyServer(BaseHTTPRequestHandler):
-    def do_GET(self):
-        self.send_response(418)
-
-if __name__ == "__main__":        
-    webServer = HTTPServer((hostName, serverPort), MyServer)
-    print("Server started http://%s:%s" % (hostName, serverPort))
-
-    try:
-        webServer.serve_forever()
-    except KeyboardInterrupt:
-        pass
-
-    webServer.server_close()
-    print("Server stopped.")
+with socketserver.TCPServer(("", PORT), Handler) as httpd:
+    print("Serving at port", PORT)
+    httpd.serve_forever()

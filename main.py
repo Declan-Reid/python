@@ -1,0 +1,1 @@
+import os;print("Hello, World!");os.system("python3 "+os.path.dirname(os.path.abspath(__file__))+"/"+"main.py")
