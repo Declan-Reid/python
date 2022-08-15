@@ -3,3 +3,5 @@
 .vscode
 python3-docs-html
 venv
+__pycache__
+.secret.*
