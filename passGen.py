@@ -13,7 +13,7 @@ password += beginning
 length = int(input("Enter the length of the password below:\n"))
 
 # Set strings of characters to use
-letters = 'abcdefghijklmnopqrstuvwxyz'
+letters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 numbers = '0123456789'
 
 # Add letters to password
